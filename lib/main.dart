@@ -4,14 +4,25 @@ import 'package:task_manager/screen/onboarding/loginScreen.dart';
 import 'package:task_manager/screen/onboarding/pinVerification.dart';
 import 'package:task_manager/screen/onboarding/registrationSceen.dart';
 import 'package:task_manager/screen/onboarding/setPasswordSceen.dart';
-import 'package:task_manager/screen/onboarding/splashScreen.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'package:task_manager/utility/utility.dart';
+
+import 'screen/task/homeScreen.dart';
+import 'component/newTaskList.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  String? token = await ReadUserData('token');
+  if (token == null) {
+    runApp(MyApp("/login"));
+  } else {
+    runApp(MyApp("/"));
+  }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String FirstRoute;
+  MyApp(this.FirstRoute);
 
   // This widget is the root of your application.
   @override
@@ -23,14 +34,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/pinvarification',
+      initialRoute: FirstRoute,
       routes: {
-        '/': (context) => SplashScreen(),
+        '/': (context) => HomeScreen(),
         '/login': (context) => LoginScreen(),
         '/registration': (context) => RegistrationScreen(),
         '/emailvarification': (context) => EmailVerificationSceen(),
         '/pinvarification': (context) => PinVerificationScreen(),
-        '/setpassword': (context) => SetPasswordSceen()
+        '/setPassword': (context) => SetPasswordSceen(),
+        '/newtasklist': (context) => NewTaskListScreen()
       },
     );
   }
