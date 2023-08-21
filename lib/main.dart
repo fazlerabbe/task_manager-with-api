@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         '/emailvarification': (context) => EmailVerificationSceen(),
         '/pinvarification': (context) => PinVerificationScreen(),
         '/setPassword': (context) => SetPasswordSceen(),
-        '/newtasklist': (context) => NewTaskListScreen()
+        '/newtasklist': (context) => NewTaskList()
       },
     );
   }

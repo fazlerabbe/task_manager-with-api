@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../component/appbottomNav.dart';
+import '../../component/cancleTaskList.dart';
+import '../../component/completeTaskList.dart';
+import '../../component/newTaskList.dart';
+import '../../component/progressTaskList.dart';
 import '../../utility/utility.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,40 +30,46 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final widgetOptions = [
-    // newTaskList(),
-    // progressTaskList(),
-    // completedTaskList(),
-    // cancelTaskList()
+    NewTaskList(),
+    ProgressTaskList(),
+    CompleteTask(),
+    CancelTaskList()
   ];
 
-  ReadAppBarData() async {
-    String? email = await ReadUserData('email');
-    String? firstName = await ReadUserData('firstName');
-    String? lastName = await ReadUserData('lastName');
-    String? photo = await ReadUserData('photo');
-    setState(() {
-      ProfileData = {
-        "email": '$email',
-        "firstName": '$firstName',
-        "lastName": '$lastName',
-        "photo": '$photo'
-      };
-    });
-  }
+  // ReadAppBarData() async {
+  //   String? email = await ReadUserData('email');
+  //   String? firstName = await ReadUserData('firstName');
+  //   String? lastName = await ReadUserData('lastName');
+  //   String? photo = await ReadUserData('photo');
+  //   setState(() {
+  //     ProfileData = {
+  //       "email": '$email',
+  //       "firstName": '$firstName',
+  //       "lastName": '$lastName',
+  //       "photo": '$photo'
+  //     };
+  //   });
+  // }
 
   @override
   void initState() {
-    ReadAppBarData();
+    //ReadAppBarData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('data'),
-      // appBar: TaskAppBar(context, ProfileData),
-      //body: widgetOptions.elementAt(TabIndex),
-      //bottomNavigationBar: appBottomNav(TabIndex, onItemTapped),
+      appBar: AppBar(
+        title: Text('data'),
+      ),
+      // body: Center(
+      //   child: Text('data'),
+      // ),
+
+      //appBar: TaskAppBar(context, ProfileData),
+      body: widgetOptions.elementAt(TabIndex),
+      bottomNavigationBar: appBottomNav(TabIndex, onItemTapped),
     );
   }
 }

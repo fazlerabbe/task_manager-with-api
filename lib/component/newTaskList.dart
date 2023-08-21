@@ -1,35 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/utility/utility.dart';
 
-class NewTaskListScreen extends StatefulWidget {
-  const NewTaskListScreen({super.key});
+import '../api/apiClient.dart';
+
+class NewTaskList extends StatefulWidget {
+  const NewTaskList({super.key});
 
   @override
-  State<NewTaskListScreen> createState() => _NewTaskListScreenState();
+  State<NewTaskList> createState() => _NewTaskListState();
 }
 
-class _NewTaskListScreenState extends State<NewTaskListScreen> {
-  String email = '';
+class _NewTaskListState extends State<NewTaskList> {
+  List TaskItems = [];
+  bool Loading = true;
+  String Status = "New";
+
   @override
   void initState() {
-    callUserData();
-    // TODO: implement initState
+    CallData();
     super.initState();
   }
 
-  callUserData() async {
-    var a = await ReadUserData("email");
+  CallData() async {
+    var data = await TaskListRequest("New");
     setState(() {
-      email = a!;
+      Loading = false;
+      TaskItems = data;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(email),
-      ),
-    );
+    return Loading
+        ? (Center(
+            child: CircularProgressIndicator(),
+          ))
+        : (Center(
+            child: Text('new'),
+          ));
   }
 }
