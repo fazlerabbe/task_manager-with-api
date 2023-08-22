@@ -5,6 +5,7 @@ import '../../component/cancleTaskList.dart';
 import '../../component/completeTaskList.dart';
 import '../../component/newTaskList.dart';
 import '../../component/progressTaskList.dart';
+import '../../component/taskAppBar.dart';
 import '../../utility/utility.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,38 +37,31 @@ class _HomeScreenState extends State<HomeScreen> {
     CancelTaskList()
   ];
 
-  // ReadAppBarData() async {
-  //   String? email = await ReadUserData('email');
-  //   String? firstName = await ReadUserData('firstName');
-  //   String? lastName = await ReadUserData('lastName');
-  //   String? photo = await ReadUserData('photo');
-  //   setState(() {
-  //     ProfileData = {
-  //       "email": '$email',
-  //       "firstName": '$firstName',
-  //       "lastName": '$lastName',
-  //       "photo": '$photo'
-  //     };
-  //   });
-  // }
+  ReadAppBarData() async {
+    String? email = await ReadUserData('email');
+    String? firstName = await ReadUserData('firstName');
+    String? lastName = await ReadUserData('lastName');
+    String? photo = await ReadUserData('photo');
+    setState(() {
+      ProfileData = {
+        "email": '$email',
+        "firstName": '$firstName',
+        "lastName": '$lastName',
+        "photo": '$photo'
+      };
+    });
+  }
 
   @override
   void initState() {
-    //ReadAppBarData();
+    ReadAppBarData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('data'),
-      ),
-      // body: Center(
-      //   child: Text('data'),
-      // ),
-
-      //appBar: TaskAppBar(context, ProfileData),
+      appBar: TaskAppBar(context, ProfileData),
       body: widgetOptions.elementAt(TabIndex),
       bottomNavigationBar: appBottomNav(TabIndex, onItemTapped),
     );

@@ -4,6 +4,7 @@ import 'package:task_manager/screen/onboarding/loginScreen.dart';
 import 'package:task_manager/screen/onboarding/pinVerification.dart';
 import 'package:task_manager/screen/onboarding/registrationSceen.dart';
 import 'package:task_manager/screen/onboarding/setPasswordSceen.dart';
+import 'package:task_manager/screen/task/taskCreateScreen.dart';
 
 import 'package:task_manager/utility/utility.dart';
 
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         '/emailvarification': (context) => EmailVerificationSceen(),
         '/pinvarification': (context) => PinVerificationScreen(),
         '/setPassword': (context) => SetPasswordSceen(),
-        '/newtasklist': (context) => NewTaskList()
+        '/newtasklist': (context) => NewTaskList(),
+        '/taskCreate': (context) => TaskCreateScreen()
       },
     );
   }
